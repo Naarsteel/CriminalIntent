@@ -54,14 +54,18 @@ class CrimeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        crimeDetailViewModel.crimeLiveData.observe(
-            viewLifecycleOwner,
-            Observer { crime ->
-                crime?.let {
-                    this.crime = crime
-                    updateUI()
-                }
-            })
+
+        val crimeId = arguments?.getSerializable("crime_id") as? UUID
+        crimeId?.let {
+            crimeDetailViewModel.loadCrime(it) // Загружаем данные по crimeId
+        }
+
+        crimeDetailViewModel.crimeLiveData.observe(viewLifecycleOwner) { crime ->
+            crime?.let {
+                this.crime = it
+                updateUI()
+            }
+        }
     }
 
     override fun onStart() {
