@@ -16,6 +16,7 @@ private const val TAG = "CrimeListFragment"
 class CrimeListFragment : Fragment() {
 
     private lateinit var crimeRecyclerView: RecyclerView
+    private var adapter: CrimeAdapter? = null
 
     private val crimeListViewModel: CrimeListViewModel by lazy {
         ViewModelProviders.of(this).get(CrimeListViewModel::class.java)
@@ -36,7 +37,16 @@ class CrimeListFragment : Fragment() {
         crimeRecyclerView =
             view.findViewById(R.id.crime_recycler_view) as RecyclerView
         crimeRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        updateUI()
+
         return view
+    }
+
+    private fun updateUI() {
+        val crimes = crimeListViewModel.crimes
+        adapter = CrimeAdapter(crimes)
+        crimeRecyclerView.adapter = adapter
     }
 
     private inner class CrimeHolder(view: View)
