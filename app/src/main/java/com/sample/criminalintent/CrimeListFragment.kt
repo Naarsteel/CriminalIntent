@@ -43,6 +43,7 @@ class CrimeListFragment : Fragment() {
         callbacks = context as Callbacks?
     }
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -65,6 +66,7 @@ class CrimeListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         crimeListViewModel.crimeListLiveData.observe(
             viewLifecycleOwner,
             Observer { crimes ->
@@ -80,11 +82,13 @@ class CrimeListFragment : Fragment() {
         callbacks = null
     }
 
+    @Suppress("DEPRECATION")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_crime_list, menu)
     }
 
+    @Suppress("DEPRECATION")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.new_crime -> {

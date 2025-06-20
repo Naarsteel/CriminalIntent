@@ -3,7 +3,6 @@ package com.sample.criminalintent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import java.util.Date
 import java.util.UUID
@@ -31,6 +29,7 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
         ViewModelProviders.of(this).get(CrimeDetailViewModel::class.java)
     }
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         crime = Crime()
@@ -50,6 +49,7 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
         return view
     }
 
+    @Suppress("DEPRECATION")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -96,6 +96,7 @@ class CrimeFragment : Fragment(), DatePickerFragment.Callbacks {
             }
         }
 
+        @Suppress("DEPRECATION")
         dateButton.setOnClickListener {
             DatePickerFragment.newInstance(crime.date).apply {
                 setTargetFragment(this@CrimeFragment, REQUEST_DATE)
