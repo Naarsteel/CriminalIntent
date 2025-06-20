@@ -1,17 +1,20 @@
 package com.sample.criminalintent
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.sample.criminalintent.databinding.ActivityMainBinding
 import java.util.UUID
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(binding.toolbar)
 
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container)
