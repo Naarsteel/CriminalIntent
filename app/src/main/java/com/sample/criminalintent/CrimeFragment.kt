@@ -104,6 +104,7 @@ class CrimeFragment : Fragment() {
         crimeDetailViewModel.saveCrime(crime)
     }
 
+
     private fun updateUI() {
         titleField.setText(crime.title)
         dateButton.text = crime.date.toString()
