@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import java.util.UUID
 
@@ -51,6 +52,18 @@ class CrimeFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        crimeDetailViewModel.crimeLiveData.observe(
+            viewLifecycleOwner,
+            Observer { crime ->
+                crime?.let {
+                    this.crime = crime
+                    updateUI()
+                }
+            })
+    }
+
     override fun onStart() {
         super.onStart()
         val titleWatcher = object : TextWatcher {
@@ -80,6 +93,12 @@ class CrimeFragment : Fragment() {
                 crime.isSolved = isChecked
             }
         }
+    }
+
+    private fun updateUI() {
+        titleField.setText(crime.title)
+        dateButton.text = crime.date.toString()
+        solvedCheckBox.isChecked = crime.isSolved
     }
 
     companion object {
