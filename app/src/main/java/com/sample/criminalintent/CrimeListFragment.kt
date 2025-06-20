@@ -45,7 +45,6 @@ class CrimeListFragment : Fragment() {
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("MENU_DEBUG", "Fragment onCreate")
         setHasOptionsMenu(true)
     }
 
@@ -82,12 +81,8 @@ class CrimeListFragment : Fragment() {
         callbacks = null
     }
 
-    @Suppress("DEPRECATION")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        Log.d("MENU_DEBUG", "Inflating menu")
-        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_crime_list, menu)
-        Log.d("MENU_DEBUG", "Menu inflated: ${menu.size()} items")
     }
 
     @Suppress("DEPRECATION")

@@ -14,15 +14,12 @@ class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("MENU_DEBUG", "Activity created")
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar = binding.toolbar
-        Log.d("MENU_DEBUG", "Toolbar found: ${toolbar != null}")
-        setSupportActionBar(toolbar)
-        Log.d("MENU_DEBUG", "SupportActionBar: ${supportActionBar != null}")
-        setContentView(R.layout.activity_main)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = "CriminalIntent"
 
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container)
@@ -33,11 +30,6 @@ class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
                 .add(R.id.fragment_container, fragment)
                 .commit()
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        Log.d("MENU_DEBUG", "Activity menu creation")
-        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onCrimeSelected(crimeId: UUID) {
